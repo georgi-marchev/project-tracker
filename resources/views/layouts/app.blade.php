@@ -13,9 +13,12 @@
         <nav>
             <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
+                @auth
+                    <li><a href="{{ route('projects.index') }}">Projects</a></li>
+                @endauth
                 @guest
-                    <li><a href="{{ route('login.get') }}">Login</a></li>
-                    <li><a href="{{ route('register.get') }}">Register</a></li>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
                 @endguest
             </ul>
             @auth

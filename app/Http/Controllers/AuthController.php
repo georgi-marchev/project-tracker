@@ -2,32 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+
 
 class AuthController extends Controller
 {
-    public function showRegisterForm()
+    public function showRegisterForm(): View
     {
         return view('auth.register');
     }
 
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('register.get')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $user = User::create([
             'name' => $request->name,
@@ -37,15 +29,15 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Registration successful.');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(): View
     {
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
@@ -61,13 +53,18 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect()->route('home');
         } else {
-            return redirect()->route('login.get')->withErrors(['invalidCredentialsError' => 'Invalid credentials.'])->withInput();
+            return redirect()->route('login')->withErrors(['invalidCredentialsError' => 'Invalid credentials.'])->withInput();
         }
     }
 
-    public function logout()
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-        return redirect()->route('login.get');
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Logout successful.');
     }
 }
