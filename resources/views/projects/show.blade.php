@@ -8,6 +8,8 @@
 
         <h3>Tasks:</h3>
 
+        @include('tasks._list', ['tasks' => $tasks, 'project' => $project])
+
         <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary mt-3">Add New Task</a>
     </div>
 

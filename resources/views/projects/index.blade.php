@@ -3,10 +3,6 @@
 @section('content')
 
     <div class="container">
-        <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>
-    </div>
-
-    <div class="container">
         <h2>All Projects</h2>
         <div class="list-group">
             @foreach ($projects as $project)
@@ -23,6 +19,10 @@
                 </div>
             @endforeach
         </div>
+    </div>
+
+    <div class="container">
+        <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>
     </div>
 
 @endsection
