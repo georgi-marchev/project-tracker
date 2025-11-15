@@ -9,6 +9,23 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                @guest
+                    <li><a href="{{ route('login.get') }}">Login</a></li>
+                    <li><a href="{{ route('register.get') }}">Register</a></li>
+                @endguest
+            </ul>
+            @auth
+                <form action="{{ route('logout.post') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            @endauth
+        </nav>
+    </header>
     <div class="container">
         @yield('content')
     </div>
