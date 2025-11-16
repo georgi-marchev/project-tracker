@@ -4,6 +4,7 @@
 
     <div class="container">
         <h2>All Projects</h2>
+        @include('common.pagination.size_selector', ['url' => route('projects.index')])
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -28,6 +29,8 @@
                 @include('common.delete.confirmation_modal')
             </tbody>
         </table>
+        <!-- Pagination links -->
+        {{ $projects->appends(request()->query())->links() }}
     </div>
     <div class="container">
         <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>

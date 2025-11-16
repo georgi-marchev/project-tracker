@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\Project\ProjectStoreRequest;
 use App\Http\Requests\Project\ProjectUpdateRequest;
 
 class ProjectController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $projects = Project::all();
+        // Get the value for perPage from the query string, default to 10
+        $perPage = $request->get('per_page', 10);
+        $projects = Project::paginate($perPage);
+
         return view('projects.index', compact('projects'));
     }
 
@@ -31,10 +35,13 @@ class ProjectController extends Controller
 
     public function show(Project $project): View
     {
-        $tasks = $project->tasks()->get();
+        // Get the value for perPage from the query string, default to 10
+        $perPage = request()->get('per_page', 10);
+        $tasks = $project->tasks()->paginate($perPage);
 
         return view('projects.show', compact('project', 'tasks'));
     }
+
 
     public function edit(Project $project): View
     {
