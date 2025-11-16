@@ -11,11 +11,13 @@ use App\Http\Requests\Project\ProjectUpdateRequest;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
-        // Get the value for perPage from the query string, default to 10
+        $request = request();
+        $sortBy = $request->get('sort_by', 'title');
+        $order = $request->get('order', 'asc');
         $perPage = $request->get('per_page', 10);
-        $projects = Project::paginate($perPage);
+        $projects = Project::orderBy($sortBy, $order)->paginate($perPage);
 
         return view('projects.index', compact('projects'));
     }
@@ -35,9 +37,11 @@ class ProjectController extends Controller
 
     public function show(Project $project): View
     {
-        // Get the value for perPage from the query string, default to 10
-        $perPage = request()->get('per_page', 10);
-        $tasks = $project->tasks()->paginate($perPage);
+        $request = request();
+        $sortBy = $request->get('sort_by', 'title');
+        $order = $request->get('order', 'asc');
+        $perPage = $request->get('per_page', 10);
+        $tasks = $project->tasks()->orderBy($sortBy, $order)->paginate($perPage);
 
         return view('projects.show', compact('project', 'tasks'));
     }

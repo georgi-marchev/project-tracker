@@ -1,10 +1,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>TASK</th>
-            <th>TYPE</th>
-            <th>STATUS</th>
-            <th>PRIORITY</th>
+            <th>@include('common.sort.link', ['field' => 'title', 'label' => 'TITLE'])</th>
+            <th>@include('common.sort.link', ['field' => 'created_at', 'label' => 'CREATED'])</th>
+            <th>@include('common.sort.link', ['field' => 'type', 'label' => 'TYPE'])</th>
+            <th>@include('common.sort.link', ['field' => 'status', 'label' => 'STATUS'])</th>
+            <th>@include('common.sort.link', ['field' => 'priority', 'label' => 'PRIORITY'])</th>
             <th>ACTIONS</th>
         </tr>
     </thead>
@@ -12,6 +13,7 @@
         @foreach ($tasks as $task)
             <tr>
                 <td><a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a></td>
+                <td><span>{{ $task->created_at }}</span></td>
                 <td><span>{{ $task->type->name }}</span></td>
                 <td><span>{{ $task->status->name }}</span></td>
                 <td><span>{{ $task->priority->name }}</span></td>

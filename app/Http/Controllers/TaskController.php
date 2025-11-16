@@ -13,11 +13,12 @@ class TaskController extends Controller
 {
     public function index(Project $project): View
     {
-        // Get the value for perPage from the query string, default to 10
+        $request = request();
+        $sortBy = $request->get('sort_by', 'title');
+        $order = $request->get('order', 'asc');
         $perPage = request()->get('per_page', 10);
+        $tasks = $project->tasks()->orderBy($sortBy, $order)->paginate($perPage);
 
-        // Get the paginated tasks for the project
-        $tasks = $project->tasks()->paginate($perPage);
         return view('tasks.index', compact('project', 'tasks'));
     }
 

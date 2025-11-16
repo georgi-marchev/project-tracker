@@ -9,7 +9,7 @@
         <h3>Tasks:</h3>
 
         @include('common.pagination.size_selector', ['url' => route('projects.show', $project)])
-        @include('tasks._list', ['tasks' => $tasks, 'project' => $project])
+        @include('tasks.list', ['tasks' => $tasks, 'project' => $project])
 
         <!-- Pagination links -->
         {{ $tasks->appends(request()->query())->links() }}

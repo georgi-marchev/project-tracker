@@ -8,8 +8,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>TITLE</th>
-                    <th>DESCRIPTION</th>
+                    <th>
+                        @include('common.sort.link', ['field' => 'title', 'label' => 'TITLE'])
+                    </th>
+                    <th>
+                        @include('common.sort.link', ['field' => 'description', 'label' => 'DESCRIPTION'])
+                    </th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
@@ -18,7 +22,6 @@
                     <tr>
                         <td><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></td>
                         <td><span>{{ \Illuminate\Support\Str::limit($project->description, 100) }}</span></td>
-
                         <td>
                             <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning btn-sm mr-2">Edit</a>
 
@@ -26,11 +29,13 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('common.delete.confirmation_modal')
             </tbody>
         </table>
-        <!-- Pagination links -->
-        {{ $projects->appends(request()->query())->links() }}
+
+        <div class="mt-3">
+            {{ $projects->appends(request()->query())->links() }}
+        </div>
+
     </div>
     <div class="container">
         <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>
