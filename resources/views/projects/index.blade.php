@@ -4,25 +4,32 @@
 
     <div class="container">
         <h2>All Projects</h2>
-        <div class="list-group">
-            @foreach ($projects as $project)
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="{{ route('projects.show', $project) }}" class="h5">{{ $project->title }}</a>
-                    <div>
-                        <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning btn-sm mr-2">Edit</a>
-                        <form action="{{ route('projects.destroy', $project) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>TITLE</th>
+                    <th>DESCRIPTION</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($projects as $project)
+                    <tr>
+                        <td><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></td>
+                        <td><span>{{ \Illuminate\Support\Str::limit($project->description, 100) }}</span></td>
 
+                        <td>
+                            <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning btn-sm mr-2">Edit</a>
+
+                            @include('common.delete.button', ['url' => route('projects.destroy', $project)])
+                        </td>
+                    </tr>
+                @endforeach
+                @include('common.delete.confirmation_modal')
+            </tbody>
+        </table>
+    </div>
     <div class="container">
         <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>
     </div>
-
 @endsection

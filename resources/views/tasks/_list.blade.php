@@ -1,11 +1,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Task</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Actions</th>
+            <th>TASK</th>
+            <th>TYPE</th>
+            <th>STATUS</th>
+            <th>PRIORITY</th>
+            <th>ACTIONS</th>
         </tr>
     </thead>
     <tbody>
@@ -18,14 +18,13 @@
                 <td>
                     <a href="{{ route('projects.tasks.edit', [$project, $task]) }}"
                         class="btn btn-warning btn-sm mr-2">Edit</a>
-                    <form action="{{ route('projects.tasks.destroy', [$project, $task]) }}" method="POST"
-                        style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+
+                    @include('common.delete.button', ['url' => route('projects.tasks.destroy', [$project, $task])])
+
                 </td>
             </tr>
         @endforeach
+
+        @include('common.delete.confirmation_modal')
     </tbody>
 </table>
