@@ -1,5 +1,5 @@
 <!-- Form for selecting the number of items per page -->
-<form method="GET" action="{{ $url }}" class="mb-3">
+<form method="GET" action="{{ $url }}" class="mb-3 text-end">
     <label for="per_page">Items per page:</label>
     <select name="per_page" id="per_page" onchange="this.form.submit()">
         <option value="5" {{ request('per_page', 10) == 5 ? 'selected' : '' }}>5</option>

@@ -13,11 +13,7 @@ class TaskController extends Controller
 {
     public function index(Project $project): View
     {
-        $request = request();
-        $sortBy = $request->get('sort_by', 'title');
-        $order = $request->get('order', 'asc');
-        $perPage = request()->get('per_page', 10);
-        $tasks = $project->tasks()->orderBy($sortBy, $order)->paginate($perPage);
+        $tasks = QueryHelper::queryTasks($project);
 
         return view('tasks.index', compact('project', 'tasks'));
     }

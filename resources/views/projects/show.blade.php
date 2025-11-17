@@ -8,6 +8,7 @@
 
         <h3>Tasks:</h3>
 
+        @include('tasks.filters', ['url' => route('projects.show', $project)])
         @include('common.pagination.size_selector', ['url' => route('projects.show', $project)])
         @include('tasks.list', ['tasks' => $tasks, 'project' => $project])
 
