@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="container">
-        <h2>{{ $project->title ?? 'No title' }}</h2>
-        <p>{{ $project->description ?? 'No description' }}</p>
+        <h2 class="text-center">{{ $project->title }}</h2>
+        <p class="text-center">{{ $project->description ?? '' }}</p>
 
         <h3>Tasks:</h3>
 

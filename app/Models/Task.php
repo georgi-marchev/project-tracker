@@ -12,7 +12,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'type', 'status', 'priority', 'project_id'];
+    protected $fillable = ['title', 'description', 'type', 'status', 'priority', 'project_id', 'user_id'];
 
     protected $casts = [
         'type' => TaskType::class,
@@ -28,5 +28,10 @@ class Task extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

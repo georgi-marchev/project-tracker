@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Project;
@@ -20,7 +21,8 @@ class TaskController extends Controller
 
     public function create(Project $project): View
     {
-        return view('tasks.create', compact('project'));
+        $users = User::all();
+        return view('tasks.create', compact('project', 'users'));
     }
 
     public function store(TaskStoreRequest $request, Project $project): RedirectResponse
@@ -40,7 +42,8 @@ class TaskController extends Controller
 
     public function edit(Project $project, Task $task)
     {
-        return view('tasks.edit', compact('project', 'task'));
+        $users = User::all();
+        return view('tasks.edit', compact('project', 'task', 'users'));
     }
 
     public function update(TaskUpdateRequest $request, Project $project, Task $task): RedirectResponse

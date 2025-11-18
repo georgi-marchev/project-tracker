@@ -12,6 +12,7 @@ class QueryHelper
         'type',
         'status',
         'priority',
+        'user_id'
     ];
 
     public static function queryTasks(Project $project): LengthAwarePaginator
@@ -44,6 +45,7 @@ class QueryHelper
         $order = $request->get('order', 'asc');
         $perPage = $request->get('per_page', 10);
         $tasks = $query
+            ->with('user')
             ->orderBy($sortBy, $order)
             ->paginate($perPage);
 

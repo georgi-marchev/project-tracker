@@ -53,6 +53,23 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="task-user-id">Assigned User</label>
+                <select name="user_id" class="form-control" id="task-user-id">
+                    <option value="">Unassigned</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}">
+                            {{ $user->email }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('priority')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+
             <button type="submit" class="btn btn-primary mt-3">Create Task</button>
         </form>
 

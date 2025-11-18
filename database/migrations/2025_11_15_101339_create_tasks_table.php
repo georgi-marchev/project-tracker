@@ -15,10 +15,11 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->enum('type', TaskType::cases())->default(TaskType::Task->value);
             $table->enum('status', TaskStatus::cases())->default(TaskStatus::NotStarted->value);
             $table->enum('priority', TaskPriority::cases())->default(TaskPriority::Medium->value);
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

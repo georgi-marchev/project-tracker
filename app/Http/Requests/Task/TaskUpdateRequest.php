@@ -23,6 +23,7 @@ class TaskUpdateRequest extends FormRequest
             'type' => ['required', 'string', 'in:' . implode(',', array_map(fn($case) => $case->value, TaskType::cases()))],
             'status' => ['required', 'string', 'in:' . implode(',', array_map(fn($case) => $case->value, TaskStatus::cases()))],
             'priority' => ['required', 'string', 'in:' . implode(',', array_map(fn($case) => $case->value, TaskPriority::cases()))],
+            'user_id' => 'nullable|exists:users,id',
         ];
     }
 }

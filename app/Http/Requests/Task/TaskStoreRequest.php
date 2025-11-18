@@ -20,6 +20,7 @@ class TaskStoreRequest extends FormRequest
             'description' => 'nullable|string',
             'type' => ['required', 'string', 'in:' . implode(',', array_map(fn($case) => $case->value, TaskType::cases()))],
             'priority' => ['required', 'string', 'in:' . implode(',', array_map(fn($case) => $case->value, TaskPriority::cases()))],
+            'user_id' => 'nullable|exists:users,id',
         ];
     }
 }

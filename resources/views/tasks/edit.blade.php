@@ -67,6 +67,20 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="task-user-id">Assigned User</label>
+                <select name="user_id" id="task-user-id" class="form-control">
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}" {{ $task->user_id == $user->id ? 'selected' : '' }}>
+                            {{ $user->email }}
+                         </option>
+                    @endforeach
+                </select>
+                @error('priority')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-primary mt-3">Update Task</button>
         </form>
     </div>

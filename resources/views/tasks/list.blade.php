@@ -6,6 +6,7 @@
             <th>@include('common.sort.link', ['field' => 'type', 'label' => 'TYPE'])</th>
             <th>@include('common.sort.link', ['field' => 'status', 'label' => 'STATUS'])</th>
             <th>@include('common.sort.link', ['field' => 'priority', 'label' => 'PRIORITY'])</th>
+            <th>@include('common.sort.link', ['field' => 'user_id', 'label' => 'USER'])</th>
             <th>ACTIONS</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
                 <td><span>{{ $task->type->name }}</span></td>
                 <td><span>{{ $task->status->name }}</span></td>
                 <td><span>{{ $task->priority->name }}</span></td>
+                <td><span>{{ $task->user?->email ?? '' }}</span></td>
                 <td>
                     <a href="{{ route('projects.tasks.edit', [$project, $task]) }}"
                         class="btn btn-warning btn-sm mr-2">Edit</a>
