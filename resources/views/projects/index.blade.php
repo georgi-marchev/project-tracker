@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between mb-3">
             <h2>Projects</h2>
-            <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create New Project</a>
+            <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create Project</a>
         </div>
         @include('common.pagination.size_selector', ['url' => route('projects.index')])
         <table class="table table-striped">
@@ -37,6 +37,7 @@
         </table>
 
         {{ $projects->appends(request()->query())->links() }}
+        @include('common.delete.confirmation_modal')
 
     </div>
 @endsection

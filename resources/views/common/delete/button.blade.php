@@ -3,3 +3,7 @@
     data-url="{{ $url }}">
     Delete
 </button>
+
+@push('scripts')
+    <script src="{{ asset('js/delete-modal.js') }}"></script>
+@endpush

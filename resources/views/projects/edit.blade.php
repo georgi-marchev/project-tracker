@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="container">
-        <h2>Edit Project</h2>
+    <div class="container mt-5">
+        <h2 class="text-center">Edit Project</h2>
         <form action="{{ route('projects.update', $project) }}" method="POST">
             @csrf
             @method('PUT')
@@ -23,8 +23,14 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Update Project</button>
+            <div class="d-flex justify-content-end">
+                <a href="#" id="back-button" class="btn btn-secondary mt-3 me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary mt-3">Update Project</button>
+            </div>
         </form>
     </div>
 
+    @push('scripts')
+        <script src="{{ asset('js/back-button.js') }}"></script>
+    @endpush
 @endsection
