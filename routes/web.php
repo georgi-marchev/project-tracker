@@ -6,9 +6,9 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\View\View;
 
-Route::get('/', function (): View {
-    return view('home');
-})->name('home');
+Route::get('/', [ProjectController::class, 'index'])
+    ->middleware('auth')
+    ->name('home');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');

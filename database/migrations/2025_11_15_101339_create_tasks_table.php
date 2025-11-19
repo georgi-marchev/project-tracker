@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->enum('type', TaskType::cases())->default(TaskType::Task->value);
             $table->enum('status', TaskStatus::cases())->default(TaskStatus::NotStarted->value);
             $table->enum('priority', TaskPriority::cases())->default(TaskPriority::Medium->value);
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

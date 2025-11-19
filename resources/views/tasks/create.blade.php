@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="task-type">Task Type</label>
-                <select name="type" id="task-type" class="form-control">
+                <select name="type" id="task-type" class="form-control" required>
                     @foreach(\App\Enums\TaskType::cases() as $type)
                         <option value="{{ $type->value }}" {{ old('type') === $type->value ? 'selected' : '' }}>
                             {{ $type->name }}
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="task-priority">Task Priority</label>
-                <select name="priority" id="task-priority" class="form-control">
+                <select name="priority" id="task-priority" class="form-control" required>
                     @foreach(\App\Enums\TaskPriority::cases() as $priority)
                         <option value="{{ $priority->value }}" {{ old('priority') === $priority->value ? 'selected' : '' }}>
                             {{ $priority->name }}
@@ -55,8 +55,7 @@
 
             <div class="form-group">
                 <label for="task-user-id">Assigned User</label>
-                <select name="user_id" class="form-control" id="task-user-id">
-                    <option value="">Unassigned</option>
+                <select name="user_id" class="form-control" id="task-user-id" required>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">
                             {{ $user->email }}

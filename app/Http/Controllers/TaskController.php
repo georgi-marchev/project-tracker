@@ -15,8 +15,9 @@ class TaskController extends Controller
     public function index(Project $project): View
     {
         $tasks = QueryHelper::queryTasks($project);
+        $users = User::all();
 
-        return view('tasks.index', compact('project', 'tasks'));
+        return view('tasks.index', compact('project', 'tasks', 'users'));
     }
 
     public function create(Project $project): View

@@ -3,19 +3,19 @@
 @section('content')
 
     <div class="container">
-        <h2 class="text-center">{{ $project->title }}</h2>
-        <p class="text-center">{{ $project->description ?? '' }}</p>
+        <div class="d-flex justify-content-end">
+            <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary mt-5">Create Task</a>
+        </div>
+        <div class="d-flex flex-column align-items-center justify-content-center text-center mt-3 mb-5">
+            <h2>{{ $project->title }}</h2>
+            <p>{{ $project->description ?? '' }}</p>
+        </div>
 
-        <h3>Tasks:</h3>
-
-        @include('tasks.filters', ['url' => route('projects.show', $project)])
+        @include('tasks.filters', ['url' => route('projects.show', $project), 'users' => $users])
         @include('common.pagination.size_selector', ['url' => route('projects.show', $project)])
         @include('tasks.list', ['tasks' => $tasks, 'project' => $project])
 
-        <!-- Pagination links -->
         {{ $tasks->appends(request()->query())->links() }}
-
-        <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary mt-3">Add New Task</a>
     </div>
 
 @endsection

@@ -13,13 +13,15 @@
     <tbody>
         @foreach ($tasks as $task)
             <tr>
-                <td><a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a></td>
+                <td><span>{{ $task->title }}</span></td>
                 <td><span>{{ $task->created_at }}</span></td>
                 <td><span>{{ $task->type->name }}</span></td>
                 <td><span>{{ $task->status->name }}</span></td>
                 <td><span>{{ $task->priority->name }}</span></td>
                 <td><span>{{ $task->user?->email ?? '' }}</span></td>
                 <td>
+                    <a href="{{ route('projects.tasks.show', [$project, $task]) }}"
+                        class="btn btn-outline-dark btn-sm mr-2">View</a>
                     <a href="{{ route('projects.tasks.edit', [$project, $task]) }}"
                         class="btn btn-warning btn-sm mr-2">Edit</a>
 

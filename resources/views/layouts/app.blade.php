@@ -26,25 +26,25 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ route('home') }}">Home</a></li>
-                @auth
-                    <li><a href="{{ route('projects.index') }}">Projects</a></li>
-                @endauth
+    <header class="p-3 text-bg-dark">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="{{ route('home') }}" class="d-flex justify-content-center">
+                <img src="{{ asset('logo.svg') }}" id="logo" alt="Logo">
+            </a>
+            <div class=" d-flex justify-content-end">
                 @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
                 @endguest
-            </ul>
-            @auth
-                <form action="{{ route('logout.post') }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit">Logout</button>
-                </form>
-            @endauth
-        </nav>
+                @auth
+                    <form action="{{ route('logout.post') }}" method="POST">
+                        @csrf
+                        <button type=" submit" class="btn btn-warning">Logout</button>
+                    </form>
+                @endauth
+            </div>
+        </div>
+
     </header>
     <div class="container">
         @yield('content')

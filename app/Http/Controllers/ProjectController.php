@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -38,8 +39,9 @@ class ProjectController extends Controller
     public function show(Project $project): View
     {
         $tasks = QueryHelper::queryTasks($project);
+        $users = User::all();
 
-        return view('projects.show', compact('project', 'tasks'));
+        return view('projects.show', compact('project', 'tasks', 'users'));
     }
 
 
