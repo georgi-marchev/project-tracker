@@ -68,8 +68,6 @@
                 @enderror
             </div>
 
-
-
             <button type="submit" class="btn btn-primary mt-3">Create Task</button>
         </form>
 

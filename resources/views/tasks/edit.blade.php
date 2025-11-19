@@ -39,6 +39,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('type')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Status Selection -->
@@ -52,6 +55,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('status')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Priority Selection -->
@@ -65,6 +71,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('priority')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -77,11 +86,10 @@
                          </option>
                     @endforeach
                 </select>
-                @error('priority')
+                @error('user_id')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <button type="submit" class="btn btn-primary mt-3">Update Task</button>
         </form>
     </div>
