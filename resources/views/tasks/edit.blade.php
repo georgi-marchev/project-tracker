@@ -70,6 +70,7 @@
             <div class="form-group">
                 <label for="task-user-id">Assigned User</label>
                 <select name="user_id" id="task-user-id" class="form-control">
+                    <option value="">Unassigned</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}" {{ $task->user_id == $user->id ? 'selected' : '' }}>
                             {{ $user->email }}
