@@ -31,7 +31,7 @@
             <!-- Type Selection -->
             <div class="form-group">
                 <label for="task-type">Task Type</label>
-                <select name="type" id="task-type" class="form-control" required>
+                <select name="type" id="task-type" class="form-select" required>
                     @foreach(\App\Enums\TaskType::cases() as $type)
                         <option value="{{ $type->value }}" 
                             {{ old('type', $task->type->value) === $type->value ? 'selected' : '' }}>
@@ -47,7 +47,7 @@
             <!-- Status Selection -->
             <div class="form-group">
                 <label for="task-status">Task Status</label>
-                <select name="status" id="task-status" class="form-control" required>
+                <select name="status" id="task-status" class="form-select" required>
                     @foreach(\App\Enums\TaskStatus::cases() as $status)
                         <option value="{{ $status->value }}" 
                             {{ old('status', $task->status->value) === $status->value ? 'selected' : '' }}>
@@ -63,7 +63,7 @@
             <!-- Priority Selection -->
             <div class="form-group">
                 <label for="task-priority">Task Priority</label>
-                <select name="priority" id="task-priority" class="form-control" required>
+                <select name="priority" id="task-priority" class="form-select" required>
                     @foreach(\App\Enums\TaskPriority::cases() as $priority)
                         <option value="{{ $priority->value }}" 
                             {{ old('priority', $task->priority->value) === $priority->value ? 'selected' : '' }}>
@@ -78,7 +78,7 @@
 
             <div class="form-group">
                 <label for="task-user-id">Assigned User</label>
-                <select name="user_id" id="task-user-id" class="form-control" required>
+                <select name="user_id" id="task-user-id" class="form-select" required>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}" {{ $task->user_id == $user->id ? 'selected' : '' }}>
                             {{ $user->email }}
