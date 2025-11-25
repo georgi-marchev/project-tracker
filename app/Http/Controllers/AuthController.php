@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -18,13 +19,14 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request): RedirectResponse
+    public function register(RegisterRequest $request): RedirectResponse
     {
+        $data = $request->validated();
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
 
         Auth::login($user);
@@ -37,24 +39,18 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        if ($validator->fails()) {
-            return redirect()->route('login')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        if (Auth::attempt($request->only('email', 'password'))) {
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             return redirect()->route('home');
-        } else {
-            return redirect()->route('login')->withErrors(['invalidCredentialsError' => 'Invalid credentials.'])->withInput();
         }
+
+        return back()
+            ->withErrors(['invalidCredentialsError' => 'Invalid credentials.'])
+            ->withInput();
     }
 
     public function logout(Request $request): RedirectResponse
@@ -65,6 +61,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('success', 'Logout successful.');
+        return redirect()->route('login')->with('success', 'Logout successful.');
     }
 }
