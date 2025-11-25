@@ -23,23 +23,42 @@
 
 <body>
     <header class="p-3 text-bg-dark">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="{{ route('home') }}" class="d-flex justify-content-center">
-                <img src="{{ asset('logo.svg') }}" id="logo" alt="Logo">
-            </a>
-            <div class=" d-flex justify-content-end">
-                @guest
-                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
-                @endguest
-                @auth
-                    <form action="{{ route('logout.post') }}" method="POST">
-                        @csrf
-                        <button type=" submit" class="btn btn-warning">Logout</button>
-                    </form>
-                @endauth
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+                    <img src="{{ asset('logo.svg') }}" id="logo" alt="Logo">
+                </a>
+
+                <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav-bar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="main-nav-bar">
+                    <ul class="navbar-nav mb-0">
+                        @guest
+                            <li class="nav-item me-2">
+                                <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
+                            </li>
+                        @endguest
+
+                        @auth
+                            <li class="nav-item me-3">
+                                <a class="nav-link" href="{{ route('profile.edit') }}">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="{{ route('logout.post') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-warning">Logout</button>
+                                </form>
+                            </li>
+                        @endauth
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
 
     </header>
     <div class="container">
