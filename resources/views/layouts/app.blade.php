@@ -22,8 +22,8 @@
 </head>
 
 <body>
-    <header class="p-3 text-bg-dark">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <header class="text-bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
                     <img src="{{ asset('logo.svg') }}" id="logo" alt="Logo">
