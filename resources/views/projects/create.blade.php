@@ -20,8 +20,16 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Create Project</button>
+            <div class="d-flex justify-content-end mt-3">
+                <a href="#" id="back-button" class="btn btn-secondary me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary">Create Project</button>
+            </div>
+
         </form>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('js/back-button.js') }}"></script>
+    @endpush
 
 @endsection

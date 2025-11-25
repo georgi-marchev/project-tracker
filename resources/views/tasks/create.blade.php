@@ -67,10 +67,14 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Create Task</button>
+            <div class="d-flex justify-content-end mt-3">
+                <a href="{{ route('projects.show', $project) }}" class="btn btn-secondary me-2">Back to Project</a>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </div>
         </form>
 
-        <a href="{{ route('projects.show', $project) }}" class="btn btn-secondary mt-3">Back to Project</a>
+
+
     </div>
 
 @endsection

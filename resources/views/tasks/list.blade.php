@@ -21,9 +21,8 @@
                 <td><span>{{ $task->user?->email ?? '' }}</span></td>
                 <td>
                     <a href="{{ route('projects.tasks.show', [$project, $task]) }}"
-                        class="btn btn-outline-dark btn-sm mr-2">View</a>
-                    <a href="{{ route('projects.tasks.edit', [$project, $task]) }}"
-                        class="btn btn-warning btn-sm mr-2">Edit</a>
+                        class="btn btn-outline-dark mr-2">View</a>
+                    <a href="{{ route('projects.tasks.edit', [$project, $task]) }}" class="btn btn-warning mr-2">Edit</a>
 
                     @include('common.delete.button', ['url' => route('projects.tasks.destroy', [$project, $task])])
 

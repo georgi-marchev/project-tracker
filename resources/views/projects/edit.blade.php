@@ -23,9 +23,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="d-flex justify-content-end">
-                <a href="#" id="back-button" class="btn btn-secondary mt-3 me-2">Cancel</a>
-                <button type="submit" class="btn btn-primary mt-3">Update Project</button>
+            <div class="d-flex justify-content-end mt-3">
+                <a href="#" id="back-button" class="btn btn-secondary me-2">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update Project</button>
             </div>
         </form>
     </div>
