@@ -12,12 +12,9 @@ use App\Http\Requests\Task\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
-    public function index(Project $project): View
+    public function index(Project $project): RedirectResponse
     {
-        $tasks = QueryHelper::queryTasks($project);
-        $users = User::all();
-
-        return view('tasks.index', compact('project', 'tasks', 'users'));
+        return redirect()->route('projects.show', $project);
     }
 
     public function create(Project $project): View
