@@ -21,3 +21,7 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script src="{{ asset('js/delete-modal.js') }}"></script>
+@endpush
