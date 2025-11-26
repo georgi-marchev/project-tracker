@@ -1,14 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
-use Illuminate\View\View;
-
-Route::get('/', [ProjectController::class, 'index'])
-    ->middleware('auth')
-    ->name('home');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
@@ -18,6 +14,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ProjectController::class, 'index'])->name('home');
 
-Route::resource('projects', ProjectController::class)->middleware('auth');
-Route::resource('projects.tasks', TaskController::class)->middleware('auth');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('projects', ProjectController::class)->middleware('auth');
+
+    Route::resource('projects.tasks', TaskController::class)->middleware('auth');
+});

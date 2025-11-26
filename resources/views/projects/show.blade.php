@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="d-flex justify-content-end  mt-5">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-end">
             <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning me-3">Edit</a>
             @include('common.delete.button', ['url' => route('projects.destroy', $project)])
             <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary ms-3">Create Task</a>

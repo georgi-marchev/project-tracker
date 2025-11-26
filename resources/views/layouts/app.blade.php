@@ -46,6 +46,9 @@
 
                         @auth
                             <li class="nav-item me-3">
+                                <a class="nav-link" href="{{ route('home') }}">Projects</a>
+                            </li>
+                            <li class="nav-item me-3">
                                 <a class="nav-link" href="{{ route('profile.edit') }}">My Profile</a>
                             </li>
                             <li class="nav-item">

@@ -29,9 +29,13 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
+                <label for="password-confirmation">Confirm Password</label>
+                <input type="password" name="password_confirmation" id="password-confirmation" class="form-control"
                     required>
+            </div>
+
+            <div class="mb-3">
+                <span id="password-match-message"></span>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Register</button>
@@ -39,4 +43,9 @@
 
         <p>Already have an account? <a href="{{ route('login') }}" class="btn btn-link">Login</a></p>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('js/password-confirmation.js') }}"></script>
+    @endpush
+
 @endsection

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5">
         <h2>Create New Project</h2>
         <form action="{{ route('projects.store') }}" method="POST">
             @csrf

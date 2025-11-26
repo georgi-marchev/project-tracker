@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5">
         <h2>Create New Task for Project: {{ $project->title }}</h2>
 
         <form action="{{ route('projects.tasks.store', $project) }}" method="POST">
