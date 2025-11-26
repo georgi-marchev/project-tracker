@@ -1,12 +1,12 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>@include('common.sort.link', ['field' => 'title', 'label' => 'TITLE'])</th>
-            <th>@include('common.sort.link', ['field' => 'created_at', 'label' => 'CREATED'])</th>
-            <th>@include('common.sort.link', ['field' => 'type', 'label' => 'TYPE'])</th>
-            <th>@include('common.sort.link', ['field' => 'status', 'label' => 'STATUS'])</th>
-            <th>@include('common.sort.link', ['field' => 'priority', 'label' => 'PRIORITY'])</th>
-            <th>@include('common.sort.link', ['field' => 'user_id', 'label' => 'USER'])</th>
+            <th>@include('partials.sort.link', ['field' => 'title', 'label' => 'TITLE'])</th>
+            <th>@include('partials.sort.link', ['field' => 'created_at', 'label' => 'CREATED'])</th>
+            <th>@include('partials.sort.link', ['field' => 'type', 'label' => 'TYPE'])</th>
+            <th>@include('partials.sort.link', ['field' => 'status', 'label' => 'STATUS'])</th>
+            <th>@include('partials.sort.link', ['field' => 'priority', 'label' => 'PRIORITY'])</th>
+            <th>@include('partials.sort.link', ['field' => 'user_id', 'label' => 'USER'])</th>
             <th>ACTIONS</th>
         </tr>
     </thead>
@@ -24,12 +24,12 @@
                         class="btn btn-outline-dark mr-2">View</a>
                     <a href="{{ route('projects.tasks.edit', [$project, $task]) }}" class="btn btn-warning mr-2">Edit</a>
 
-                    @include('common.delete.button', ['url' => route('projects.tasks.destroy', [$project, $task])])
+                    @include('partials.delete.button', ['url' => route('projects.tasks.destroy', [$project, $task])])
 
                 </td>
             </tr>
         @endforeach
 
-        @include('common.delete.confirmation_modal')
+        @include('partials.delete.confirmation_modal')
     </tbody>
 </table>

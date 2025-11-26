@@ -11,15 +11,15 @@
             <h2>Projects</h2>
         </div>
 
-        @include('common.pagination.size_selector', ['url' => route('projects.index')])
+        @include('partials.pagination.size_selector', ['url' => route('projects.index')])
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>
-                        @include('common.sort.link', ['field' => 'title', 'label' => 'TITLE'])
+                        @include('partials.sort.link', ['field' => 'title', 'label' => 'TITLE'])
                     </th>
                     <th>
-                        @include('common.sort.link', ['field' => 'description', 'label' => 'DESCRIPTION'])
+                        @include('partials.sort.link', ['field' => 'description', 'label' => 'DESCRIPTION'])
                     </th>
                     <th>ACTIONS</th>
                 </tr>
@@ -32,7 +32,7 @@
                         <td>
                             <a href="{{ route('projects.show', [$project]) }}" class="btn btn-outline-dark mr-2">View</a>
                             <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning mr-2">Edit</a>
-                            @include('common.delete.button', ['url' => route('projects.destroy', $project)])
+                            @include('partials.delete.button', ['url' => route('projects.destroy', $project)])
                         </td>
                     </tr>
                 @endforeach
@@ -40,7 +40,7 @@
         </table>
 
         {{ $projects->appends(request()->query())->links() }}
-        @include('common.delete.confirmation_modal')
+        @include('partials.delete.confirmation_modal')
 
     </div>
 @endsection

@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5">
         @include('tasks.filters', ['url' => route('projects.tasks.index', $project)])
-        @include('common.pagination.size_selector', ['url' => route('projects.show', $project)])
+        @include('partials.pagination.size_selector', ['url' => route('projects.show', $project)])
         @include('tasks.list', ['tasks' => $tasks, 'project' => $project])
         <!-- Pagination links -->
         {{ $tasks->appends(request()->query())->links() }}

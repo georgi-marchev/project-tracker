@@ -5,7 +5,7 @@
 
         <div class="d-flex justify-content-end mb-3">
             <a href="{{ route('projects.tasks.edit', [$task->project, $task]) }}" class="btn btn-warning me-3">Edit</a>
-            @include('common.delete.button', ['url' => route('projects.tasks.destroy', [$task->project, $task])])
+            @include('partials.delete.button', ['url' => route('projects.tasks.destroy', [$task->project, $task])])
         </div>
 
         <h2 class="text-center fw-bold mb-1">{{ $task->title }}</h2>
@@ -50,5 +50,5 @@
         </div>
     </div>
 
-    @include('common.delete.confirmation_modal')
+    @include('partials.delete.confirmation_modal')
 @endsection

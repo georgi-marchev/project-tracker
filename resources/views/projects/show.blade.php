@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-end">
             <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning me-3">Edit</a>
-            @include('common.delete.button', ['url' => route('projects.destroy', $project)])
+            @include('partials.delete.button', ['url' => route('projects.destroy', $project)])
             <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary ms-3">Create Task</a>
         </div>
         <div class="d-flex flex-column align-items-center justify-content-center text-center mt-3 mb-5">
@@ -14,7 +14,7 @@
         </div>
 
         @include('tasks.filters', ['url' => route('projects.show', $project), 'users' => $users])
-        @include('common.pagination.size_selector', ['url' => route('projects.show', $project)])
+        @include('partials.pagination.size_selector', ['url' => route('projects.show', $project)])
         @include('tasks.list', ['tasks' => $tasks, 'project' => $project])
 
         {{ $tasks->appends(request()->query())->links() }}
