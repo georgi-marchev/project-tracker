@@ -5,7 +5,7 @@
         <a href="{{ route('projects.create') }}" class="btn btn-primary mb-3">Create Project</a>
     </div>
     <div class="d-flex flex-column align-items-center justify-content-center text-center mt-3 mb-5">
-        <h2>Projects</h2>
+        <h2 class="fw-bold">Projects</h2>
     </div>
 
     @include('partials.pagination.size_selector', ['url' => route('projects.index')])

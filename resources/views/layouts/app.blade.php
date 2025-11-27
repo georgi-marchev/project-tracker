@@ -46,15 +46,15 @@
 
                         @auth
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="{{ route('home') }}">Projects</a>
+                                <a class="nav-link fw-semibold" href="{{ route('home') }}">Projects</a>
                             </li>
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">My Profile</a>
+                                <a class="nav-link fw-semibold" href="{{ route('profile.edit') }}">My Profile</a>
                             </li>
                             <li class="nav-item">
                                 <form action="{{ route('logout.post') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-warning">Logout</button>
+                                    <button type="submit" class="btn btn-outline-light">Logout</button>
                                 </form>
                             </li>
                         @endauth

@@ -1,9 +1,12 @@
 $(document).ready(function() {
     
-     $('#password, #password_confirmation').on('keyup', function() {
+     $('#password, #password-confirmation').on('keyup', function() {
       
         const password = $('#password').val();
-        const confirm = $('#password_confirmation').val();
+        const confirm = $('#password-confirmation').val();
+
+        console.log(password);
+        console.log(confirm);
 
         if (confirm === '') {
             $('#password-match-message').text('');

@@ -19,7 +19,7 @@
     @if ($task->description)
         <div class="card shadow-sm mb-4">
             <div class="card-body text-center">
-                <p class="mb-0">{{ $task->description }}</p>
+                <p class="text-muted mb-0">{{ $task->description }}</p>
             </div>
         </div>
     @endif

@@ -8,8 +8,10 @@
         <a href="{{ route('projects.tasks.create', $project) }}" class="btn btn-primary ms-3">Create Task</a>
     </div>
     <div class="d-flex flex-column align-items-center justify-content-center text-center mt-3 mb-5">
-        <h2>{{ $project->title }}</h2>
-        <p>{{ $project->description ?? '' }}</p>
+        <h2 class="fw-bold">{{ $project->title }}</h2>
+        <div class="container">
+            <p class="text-muted mx-auto">{{ $project->description ?? '' }}</p>
+        </div>
     </div>
 
     {{-- Task Filters --}}
